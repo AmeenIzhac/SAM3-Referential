@@ -1,0 +1,31 @@
+# vendored SAM3 (its own git repo, cloned separately)
+/sam3/
+
+# data + generated artifacts (SA-1B frames, results*.jsonl, previews, dataset_mixed/)
+/data/
+/out/
+
+# model weights & checkpoints (live outside the repo; never push)
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.safetensors
+
+# stray logs / scratch output
+*.out
+*.log
+*.tmp
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# os / editor junk
+.DS_Store
+*.swp
