@@ -1,0 +1,47 @@
+{
+ "tag": "int3_dense",
+ "build_info": {
+  "checkpoint": "/mnt/data0/ameen/mmr_runs/mmr_scale/checkpoints/checkpoint.pt",
+  "weight_dtype": "fp32",
+  "bits": 3,
+  "group_size": 128,
+  "n_tensors": 348,
+  "skip": [],
+  "only": [],
+  "quantized_params": 825491968,
+  "total_params": 840509750,
+  "coverage": 0.9821,
+  "rel_err_mean": 0.2219423767078349,
+  "rel_err_median": 0.218612402677536,
+  "rel_err_max": 0.3071818947792053,
+  "rel_err_max_tensor": "geometry_encoder.points_pos_enc_project.weight",
+  "quant_mode": "dense",
+  "build_seconds": 14.4
+ },
+ "device": "NVIDIA GeForce RTX 3090",
+ "dtype": "bf16 autocast",
+ "resolution": 1008,
+ "vram": {
+  "weights_MB": 3575.3,
+  "peak_MB": 5335.1
+ },
+ "image_encode": {
+  "n": 36,
+  "mean_ms": 111.53,
+  "median_ms": 111.53,
+  "p90_ms": 111.84,
+  "min_ms": 111.06
+ },
+ "text_prompt_fwd": {
+  "n": 120,
+  "mean_ms": 66.04,
+  "median_ms": 65.59,
+  "p90_ms": 68.16,
+  "min_ms": 64.12
+ },
+ "per_prediction_ms": {
+  "cold_1img_1q": 177.11,
+  "amortized": 98.31,
+  "q_per_img_used": 3.408
+ }
+}

@@ -145,11 +145,11 @@ guards are exercised by `test_wquant.py`.
 
 ## 4. Harness validation
 
-`/workspace/newsam`, which the original `out/mmrcomp/code/run_sam3_mmr.py` imported `build_model`
+`/workspace/newsam`, which the original `mmrcomp/code/run_sam3_mmr.py` imported `build_model`
 from, no longer exists on this box, so the loader was rebuilt against the stock `/workspace/sam3`
 tree (the same one `gold_eval.py` uses). The rebuilt harness reproduces the recorded run **exactly**:
 
-| | stored `out/mmr_eval/mmrscale_epoch_1.json` | rebuilt fp32 |
+| | stored `mmr_eval/mmrscale_epoch_1.json` | rebuilt fp32 |
 |---|--:|--:|
 | gIoU | 36.98 | **36.98** |
 | cIoU | 36.56 | **36.56** |
@@ -621,7 +621,7 @@ The artifact is a single `.pt` holding packed uint8 codes, bf16 scales, uint8 ze
 unquantized remainder, plus the config needed to reconstruct the model:
 
 ```python
-import sys; sys.path.insert(0, "/workspace/reasonseg/out/quant/code")
+import sys; sys.path.insert(0, "/workspace/reasonseg/quant/code")
 import sam3_quant_model as Q
 from sam3.model.sam3_image_processor import Sam3Processor
 
@@ -644,7 +644,7 @@ has to be imported before `sam3.model.*`.
 
 ```bash
 PY=/workspace/envs/sam3/bin/python
-CODE=out/quant/code
+CODE=quant/code
 
 $PY $CODE/test_wquant.py                    # quantizer correctness (§1-§3)
 bash $CODE/run_quant_sweep.sh               # the bit-width curve, full MMR val (§5)
@@ -664,15 +664,15 @@ with a cross-device index error.
 
 | file | what it does |
 |---|---|
-| `out/quant/code/wquant.py` | the quantizer: group-wise RTN, bit-plane packing, `QuantLinear`, artifact I/O |
-| `out/quant/code/sam3_quant_model.py` | builds a SAM3 image model from a trainer or quantized checkpoint |
-| `out/quant/code/quantize_ckpt.py` | fp32 checkpoint → packed k-bit artifact |
-| `out/quant/code/run_mmr_quant.py` | MMR val eval, same protocol as `out/mmrcomp/code/run_sam3_mmr.py` |
-| `out/quant/code/merge_quant.py` | merges shards; adds exact per-subset cIoU |
-| `out/quant/code/test_wquant.py` | the correctness suite (§1–§3) |
-| `out/quant/code/analyze_area.py` | recovers predicted mask area from stored counts (§7) |
-| `out/quant/code/check_determinism.py` | per-question diff of two runs of one config |
-| `out/quant/code/bench_quant_latency.py` | per-prediction latency + resident VRAM |
-| `out/quant/code/{quant,size}_table.py` | the tables in this document |
+| `quant/code/wquant.py` | the quantizer: group-wise RTN, bit-plane packing, `QuantLinear`, artifact I/O |
+| `quant/code/sam3_quant_model.py` | builds a SAM3 image model from a trainer or quantized checkpoint |
+| `quant/code/quantize_ckpt.py` | fp32 checkpoint → packed k-bit artifact |
+| `quant/code/run_mmr_quant.py` | MMR val eval, same protocol as `mmrcomp/code/run_sam3_mmr.py` |
+| `quant/code/merge_quant.py` | merges shards; adds exact per-subset cIoU |
+| `quant/code/test_wquant.py` | the correctness suite (§1–§3) |
+| `quant/code/analyze_area.py` | recovers predicted mask area from stored counts (§7) |
+| `quant/code/check_determinism.py` | per-question diff of two runs of one config |
+| `quant/code/bench_quant_latency.py` | per-prediction latency + resident VRAM |
+| `quant/code/{quant,size}_table.py` | the tables in this document |
 
-Metric dumps are in `out/quant/eval/mmr_*.json`; artifacts in `/mnt/data0/ameen/quant_ckpts/`.
+Metric dumps are in `quant/eval/mmr_*.json`; artifacts in `/mnt/data0/ameen/quant_ckpts/`.

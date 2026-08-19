@@ -1,0 +1,35 @@
+{
+ "model": "m2sa-7b",
+ "mode": "gen",
+ "device": "NVIDIA GeForce RTX 3090",
+ "dtype": "bf16",
+ "forward": {
+  "n": 100,
+  "mean_ms": 4426.03,
+  "median_ms": 4220.07,
+  "p90_ms": 6436.91,
+  "min_ms": 2328.07
+ },
+ "mask_to_cpu": {
+  "n": 100,
+  "mean_ms": 0.32,
+  "median_ms": 0.25,
+  "p90_ms": 0.41,
+  "min_ms": 0.16
+ },
+ "cpu_preprocess_per_image": {
+  "n": 40,
+  "mean_ms": 31.23,
+  "median_ms": 27.44,
+  "p90_ms": 31.75,
+  "min_ms": 24.54
+ },
+ "tokens": {
+  "mean": 101.2,
+  "median": 99.5
+ },
+ "per_prediction_ms": {
+  "gpu": 4220.07,
+  "incl_post": 4220.33
+ }
+}

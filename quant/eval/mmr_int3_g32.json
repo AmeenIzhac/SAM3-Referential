@@ -1,0 +1,61 @@
+{
+ "label": "mmr_int3_g32",
+ "build_info": {
+  "checkpoint": "/mnt/data0/ameen/mmr_runs/mmr_scale/checkpoints/checkpoint.pt",
+  "weight_dtype": "fp32",
+  "bits": 3,
+  "group_size": 32,
+  "n_tensors": 348,
+  "skip": [],
+  "only": [],
+  "quantized_params": 825491968,
+  "total_params": 840509750,
+  "coverage": 0.9821,
+  "rel_err_mean": 0.17425090620334274,
+  "rel_err_median": 0.17365044355392456,
+  "rel_err_max": 0.21285472810268402,
+  "rel_err_max_tensor": "transformer.decoder.ref_point_head.layers.1.weight",
+  "quant_mode": "dense",
+  "build_seconds": 26.9
+ },
+ "shard_seconds_sum": 882.2,
+ "n_shards": 3,
+ "overall": {
+  "n": 8194,
+  "gIoU": 35.82,
+  "cIoU": 36.73,
+  "iou50": 35.36
+ },
+ "by_gran": {
+  "obj": {
+   "n": 1291,
+   "gIoU": 44.18,
+   "cIoU": 45.12,
+   "iou50": 46.09
+  },
+  "part": {
+   "n": 4171,
+   "gIoU": 26.43,
+   "cIoU": 29.43,
+   "iou50": 24.21
+  },
+  "obj&part": {
+   "n": 2732,
+   "gIoU": 46.2,
+   "cIoU": 43.16,
+   "iou50": 47.29
+  }
+ },
+ "single_target": {
+  "n": 3008,
+  "gIoU": 30.73,
+  "cIoU": 32.79,
+  "iou50": 29.42
+ },
+ "multi_target": {
+  "n": 5186,
+  "gIoU": 38.77,
+  "cIoU": 39.39,
+  "iou50": 38.8
+ }
+}

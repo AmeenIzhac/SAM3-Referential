@@ -1,0 +1,34 @@
+{
+ "tag": "fp32",
+ "build_info": {
+  "checkpoint": "/mnt/data0/ameen/mmr_runs/mmr_scale/checkpoints/checkpoint.pt",
+  "weight_dtype": "fp32",
+  "build_seconds": 9.3
+ },
+ "device": "NVIDIA GeForce RTX 3090",
+ "dtype": "bf16 autocast",
+ "resolution": 1008,
+ "vram": {
+  "weights_MB": 3575.3,
+  "peak_MB": 5335.4
+ },
+ "image_encode": {
+  "n": 36,
+  "mean_ms": 111.41,
+  "median_ms": 111.48,
+  "p90_ms": 111.92,
+  "min_ms": 110.6
+ },
+ "text_prompt_fwd": {
+  "n": 120,
+  "mean_ms": 67.41,
+  "median_ms": 67.26,
+  "p90_ms": 69.07,
+  "min_ms": 64.79
+ },
+ "per_prediction_ms": {
+  "cold_1img_1q": 178.74,
+  "amortized": 99.97,
+  "q_per_img_used": 3.408
+ }
+}

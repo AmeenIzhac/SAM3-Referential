@@ -1,0 +1,143 @@
+[
+ {
+  "image_id": 323829,
+  "file_name": "train2017/000000323829.jpg",
+  "qi": 0,
+  "question": "What might be the purpose of the item holding the flower?",
+  "cat_names": [
+   "vase"
+  ],
+  "T": 1,
+  "gran": "obj",
+  "note": "reasoning_gap_obj",
+  "ious": {
+   "m2sa": 0.99,
+   "sam3_base_q": 0.291,
+   "sam3_tr_q": 0.088,
+   "sam3_base_c": 0.986,
+   "sam3_tr_c": 0.984
+  }
+ },
+ {
+  "image_id": 557400,
+  "file_name": "train2017/000000557400.jpg",
+  "qi": 0,
+  "question": "What might the object be that provides a soft surface for someone to stand on after getting wet?",
+  "cat_names": [
+   "towel"
+  ],
+  "T": 1,
+  "gran": "obj",
+  "note": "reasoning_gap_obj",
+  "ious": {
+   "m2sa": 0.984,
+   "sam3_base_q": 0.0,
+   "sam3_tr_q": 0.0,
+   "sam3_base_c": 0.987,
+   "sam3_tr_c": 0.987
+  }
+ },
+ {
+  "image_id": 436744,
+  "file_name": "train2017/000000436744.jpg",
+  "qi": 2,
+  "question": "Where is an item typically used for personal drying stationed within this clean restroom environment?",
+  "cat_names": [
+   "towel"
+  ],
+  "T": 1,
+  "gran": "obj",
+  "note": "finetune_helps_q",
+  "ious": {
+   "m2sa": 0.968,
+   "sam3_base_q": 0.0,
+   "sam3_tr_q": 0.987,
+   "sam3_base_c": 0.761,
+   "sam3_tr_c": 0.76
+  }
+ },
+ {
+  "image_id": 320978,
+  "file_name": "train2017/000000320978.jpg",
+  "qi": 2,
+  "question": "How is the merchandise that could potentially scratch the surface or need a firm base for display purposes handled?",
+  "cat_names": [
+   "box"
+  ],
+  "T": 1,
+  "gran": "obj",
+  "note": "sam3_oracle_beats_m2sa",
+  "ious": {
+   "m2sa": 0.0,
+   "sam3_base_q": 0.0,
+   "sam3_tr_q": 0.978,
+   "sam3_base_c": 0.986,
+   "sam3_tr_c": 0.986
+  }
+ },
+ {
+  "image_id": 418110,
+  "file_name": "train2017/000000418110.jpg",
+  "qi": 0,
+  "question": "Which containers in this collection could you seal by attaching their corresponding tops?",
+  "cat_names": [
+   "jar",
+   "jar:lid",
+   "jar",
+   "jar:lid",
+   "jar",
+   "jar:lid",
+   "jar",
+   "jar:lid"
+  ],
+  "T": 8,
+  "gran": "obj&part",
+  "note": "multi_target",
+  "ious": {
+   "m2sa": 0.534,
+   "sam3_base_q": 0.728,
+   "sam3_tr_q": 0.494,
+   "sam3_base_c": 0.674,
+   "sam3_tr_c": 0.553
+  }
+ },
+ {
+  "image_id": 15552,
+  "file_name": "train2017/000000015552.jpg",
+  "qi": 1,
+  "question": "When looking to identify the brand of the laptop and visual feedback from input, which parts of the laptop would be relevant?",
+  "cat_names": [
+   "laptop_computer:logo",
+   "laptop_computer:screen"
+  ],
+  "T": 2,
+  "gran": "part",
+  "note": "part_level",
+  "ious": {
+   "m2sa": 0.985,
+   "sam3_base_q": 0.0,
+   "sam3_tr_q": 0.49,
+   "sam3_base_c": 0.991,
+   "sam3_tr_c": 0.993
+  }
+ },
+ {
+  "image_id": 462536,
+  "file_name": "train2017/000000462536.jpg",
+  "qi": 2,
+  "question": "Where on the largest vehicle can we find its brand identifying feature?",
+  "cat_names": [
+   "car_(automobile):logo"
+  ],
+  "T": 1,
+  "gran": "part",
+  "note": "hard_for_all",
+  "ious": {
+   "m2sa": 0.0,
+   "sam3_base_q": 0.0,
+   "sam3_tr_q": 0.0,
+   "sam3_base_c": 0.0,
+   "sam3_tr_c": 0.0
+  }
+ }
+]

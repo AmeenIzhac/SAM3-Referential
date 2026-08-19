@@ -1,0 +1,41 @@
+{
+ "label": "m2sa_teacher",
+ "overall": {
+  "n": 8194,
+  "gIoU": 35.99,
+  "iou50": 35.83,
+  "cIoU": 54.69
+ },
+ "by_gran": {
+  "obj": {
+   "n": 1291,
+   "gIoU": 39.22,
+   "iou50": 40.98
+  },
+  "part": {
+   "n": 4171,
+   "gIoU": 30.16,
+   "iou50": 28.17
+  },
+  "obj&part": {
+   "n": 2732,
+   "gIoU": 43.37,
+   "iou50": 45.1
+  }
+ },
+ "single_target": {
+  "n": 3008,
+  "gIoU": 34.96,
+  "iou50": 35.31
+ },
+ "multi_target": {
+  "n": 5186,
+  "gIoU": 36.59,
+  "iou50": 36.14
+ },
+ "native_per_target": {
+  "targets": 14671,
+  "gIoU": 28.09,
+  "cIoU": 49.02
+ }
+}

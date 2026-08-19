@@ -1,0 +1,48 @@
+{
+ "label": "mmr_bf16",
+ "build_info": {
+  "checkpoint": "/mnt/data0/ameen/mmr_runs/mmr_scale/checkpoints/checkpoint.pt",
+  "weight_dtype": "bf16",
+  "build_seconds": 13.9
+ },
+ "shard_seconds_sum": 891.3,
+ "n_shards": 3,
+ "overall": {
+  "n": 8194,
+  "gIoU": 36.99,
+  "cIoU": 36.52,
+  "iou50": 36.06
+ },
+ "by_gran": {
+  "obj": {
+   "n": 1291,
+   "gIoU": 45.46,
+   "cIoU": 41.39,
+   "iou50": 47.56
+  },
+  "part": {
+   "n": 4171,
+   "gIoU": 27.55,
+   "cIoU": 30.33,
+   "iou50": 24.67
+  },
+  "obj&part": {
+   "n": 2732,
+   "gIoU": 47.41,
+   "cIoU": 43.08,
+   "iou50": 48.02
+  }
+ },
+ "single_target": {
+  "n": 3008,
+  "gIoU": 31.27,
+  "cIoU": 31.88,
+  "iou50": 29.32
+ },
+ "multi_target": {
+  "n": 5186,
+  "gIoU": 40.31,
+  "cIoU": 39.67,
+  "iou50": 39.97
+ }
+}

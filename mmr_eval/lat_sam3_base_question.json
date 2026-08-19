@@ -1,0 +1,36 @@
+{
+ "model": "sam3-base",
+ "prompt_mode": "question",
+ "device": "NVIDIA GeForce RTX 3090",
+ "dtype": "bf16 autocast",
+ "resolution": 1008,
+ "image_encode": {
+  "n": 59,
+  "mean_ms": 111.24,
+  "median_ms": 111.17,
+  "p90_ms": 111.77,
+  "min_ms": 110.38
+ },
+ "text_prompt_fwd": {
+  "n": 200,
+  "mean_ms": 65.8,
+  "median_ms": 65.15,
+  "p90_ms": 67.78,
+  "min_ms": 63.07
+ },
+ "mask_to_cpu": {
+  "n": 200,
+  "mean_ms": 0.01,
+  "median_ms": 0.01,
+  "p90_ms": 0.01,
+  "min_ms": 0.01
+ },
+ "avg_text_prompts_per_question": 1.0,
+ "per_prediction_ms": {
+  "cold_1img_1q_gpu": 176.32,
+  "cold_1img_1q_incl_post": 176.33,
+  "amortized_gpu": 97.77,
+  "amortized_incl_post": 97.78,
+  "q_per_img_used": 3.408
+ }
+}

@@ -1,0 +1,41 @@
+{
+ "label": "lisa_teacher",
+ "overall": {
+  "n": 8194,
+  "gIoU": 12.5,
+  "iou50": 10.34,
+  "cIoU": 19.15
+ },
+ "by_gran": {
+  "obj": {
+   "n": 1291,
+   "gIoU": 16.4,
+   "iou50": 15.1
+  },
+  "part": {
+   "n": 4171,
+   "gIoU": 9.18,
+   "iou50": 6.59
+  },
+  "obj&part": {
+   "n": 2732,
+   "gIoU": 15.72,
+   "iou50": 13.8
+  }
+ },
+ "single_target": {
+  "n": 3008,
+  "gIoU": 11.96,
+  "iou50": 10.74
+ },
+ "multi_target": {
+  "n": 5186,
+  "gIoU": 12.81,
+  "iou50": 10.1
+ },
+ "native_per_target": {
+  "targets": 14671,
+  "gIoU": 8.94,
+  "cIoU": 15.7
+ }
+}

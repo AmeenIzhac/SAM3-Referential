@@ -244,7 +244,7 @@ checkpoint copies**. Each rung is the same weights further along, not a separate
 the rung trigger is just a step count.
 
 This is deliberately different from an earlier 4-stage curve in this repo
-([`out/mmrcomp/scaling_curve.md`](out/mmrcomp/scaling_curve.md)), which chained *separate* training
+([`mmrcomp/scaling_curve.md`](mmrcomp/scaling_curve.md)), which chained *separate* training
 jobs and therefore restarted the optimizer and LR warmup at every stage. That design produced a
 peak at 2K samples followed by a decline; the restarts were the cause, and removing them changes
 the conclusion entirely (§7).
@@ -271,7 +271,7 @@ A final end-of-epoch evaluation after all 45,618 steps (including the LR cooldow
 `effective updates` is the count of optimizer steps that were actually *applied* versus attempted.
 It reads `n/n` on every row. That column exists because of §9.
 
-![scaling ladder](out/mmrcomp/scaling_curve_full.png)
+![scaling ladder](mmrcomp/scaling_curve_full.png)
 
 ### Findings
 
@@ -519,7 +519,7 @@ inspection:
   ~1e19 the sum sits where one ULP is ~2048, while the entire rest of the model contributes ~5e3 —
   it would have reported "unchanged" for essentially any real update. It now compares per-tensor.
 
-`out/mmrcomp/code/test_guards.py` exercises the real `Trainer` methods and asserts each guard fires
+`mmrcomp/code/test_guards.py` exercises the real `Trainer` methods and asserts each guard fires
 (and that a 40 % skip rate does *not* trip the abort). Run 2 finished with **zero skipped steps and
 zero alerts**, and every ladder rung logged 1,022–1,068 of 1,102 parameter tensors moving (the extra
 end-of-epoch check, only 23 steps after the previous rung and during the LR cooldown, logged 609).
@@ -566,37 +566,37 @@ end-of-epoch check, only 23 steps after the previous rung and during the LR cool
 
 ```bash
 # 1. MMR train -> one SAM3-COCO json (45,618 images / 154,124 samples)
-python out/mmrcomp/code/convert_mmr_full.py
+python mmrcomp/code/convert_mmr_full.py
 
 # 2. the ladder: one continuous run that benchmarks itself at every rung (~15 h, 1 GPU)
-bash out/mmrcomp/code/run_scale_ladder.sh
+bash mmrcomp/code/run_scale_ladder.sh
 
 # 3. watchdog + live table/plot refresh
-bash out/mmrcomp/code/guard_ladder.sh &
+bash mmrcomp/code/guard_ladder.sh &
 
 # 4. verify the guards actually fire
-python out/mmrcomp/code/test_guards.py
+python mmrcomp/code/test_guards.py
 ```
 
 | file | what it does |
 |---|---|
-| `out/mmrcomp/code/mmr_common.py` | MMR val loading, GT decode, union + native meters, granularity split |
-| `out/mmrcomp/code/convert_mmr_full.py` | MMR train → SAM3-COCO |
+| `mmrcomp/code/mmr_common.py` | MMR val loading, GT decode, union + native meters, granularity split |
+| `mmrcomp/code/convert_mmr_full.py` | MMR train → SAM3-COCO |
 | `sam3/train/configs/newsam/mmr_scale.yaml` | the run: 1 epoch, batch 1, rolling checkpoint only |
-| `out/mmrcomp/code/run_scale_ladder.sh` | sets the rung fractions and launches |
-| `out/mmrcomp/code/bench_scale.sh` | one rung: 3-way sharded MMR-val eval |
-| `out/mmrcomp/code/run_sam3_mmr.py` | SAM3 on MMR val (`--prompt-mode question|concept`) |
-| `out/mmrcomp/code/run_m2sa_mmr.py` | M²SA-7B (`--mode teacher|gen`), m2sa env, cwd = MMR repo |
-| `out/mmrcomp/code/run_lisa_mmr.py` | LISA-7B, same interface, m2sa env, cwd = LISA repo |
-| `out/mmrcomp/code/run_lisa_wave.sh` | both LISA protocols, 3-way sharded, merged |
-| `out/mmrcomp/code/run_pixellm_mmr.py` | PixelLM-7B, free generation; 448 CLIP + 1024 mask pipeline |
-| `out/mmrcomp/code/run_pixellm_wave.sh` | PixelLM 3-way sharded, with flush/resume/retry |
-| `out/mmrcomp/code/bench_{sam3,m2sa,lisa}_latency.py` | per-prediction latency |
-| `out/mmrcomp/code/plot_ladder.py` / `plot_lr.py` | ladder table + curve, LR overlay |
-| `out/mmrcomp/code/guard_ladder.sh` / `test_guards.py` | watchdog and its tests |
+| `mmrcomp/code/run_scale_ladder.sh` | sets the rung fractions and launches |
+| `mmrcomp/code/bench_scale.sh` | one rung: 3-way sharded MMR-val eval |
+| `mmrcomp/code/run_sam3_mmr.py` | SAM3 on MMR val (`--prompt-mode question|concept`) |
+| `mmrcomp/code/run_m2sa_mmr.py` | M²SA-7B (`--mode teacher|gen`), m2sa env, cwd = MMR repo |
+| `mmrcomp/code/run_lisa_mmr.py` | LISA-7B, same interface, m2sa env, cwd = LISA repo |
+| `mmrcomp/code/run_lisa_wave.sh` | both LISA protocols, 3-way sharded, merged |
+| `mmrcomp/code/run_pixellm_mmr.py` | PixelLM-7B, free generation; 448 CLIP + 1024 mask pipeline |
+| `mmrcomp/code/run_pixellm_wave.sh` | PixelLM 3-way sharded, with flush/resume/retry |
+| `mmrcomp/code/bench_{sam3,m2sa,lisa}_latency.py` | per-prediction latency |
+| `mmrcomp/code/plot_ladder.py` / `plot_lr.py` | ladder table + curve, LR overlay |
+| `mmrcomp/code/guard_ladder.sh` / `test_guards.py` | watchdog and its tests |
 
-Per-rung metric dumps are in `out/mmr_eval/mmrscale_*.json`; run 1's invalid dumps are kept in
-`out/mmr_eval/run1_nan/` with its curve as `out/mmrcomp/run1_scaling_curve.png`. Longer-form
-versions of individual sections live in [`out/mmrcomp/README.md`](out/mmrcomp/README.md) (head-to-
-head), [`scaling_ladder.md`](out/mmrcomp/scaling_ladder.md) (ladder) and
-[`latency.md`](out/mmrcomp/latency.md) (cost).
+Per-rung metric dumps are in `mmr_eval/mmrscale_*.json`; run 1's invalid dumps are kept in
+`mmr_eval/run1_nan/` with its curve as `mmrcomp/run1_scaling_curve.png`. Longer-form
+versions of individual sections live in [`mmrcomp/README.md`](mmrcomp/README.md) (head-to-
+head), [`scaling_ladder.md`](mmrcomp/scaling_ladder.md) (ladder) and
+[`latency.md`](mmrcomp/latency.md) (cost).

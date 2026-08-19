@@ -1,0 +1,35 @@
+{
+ "model": "lisa-7b",
+ "mode": "gen",
+ "device": "NVIDIA GeForce RTX 3090",
+ "dtype": "bf16",
+ "forward": {
+  "n": 100,
+  "mean_ms": 1308.18,
+  "median_ms": 1185.57,
+  "p90_ms": 1607.91,
+  "min_ms": 850.36
+ },
+ "mask_to_cpu": {
+  "n": 100,
+  "mean_ms": 0.23,
+  "median_ms": 0.23,
+  "p90_ms": 0.25,
+  "min_ms": 0.15
+ },
+ "cpu_preprocess_per_image": {
+  "n": 40,
+  "mean_ms": 27.03,
+  "median_ms": 26.78,
+  "p90_ms": 28.97,
+  "min_ms": 23.17
+ },
+ "tokens": {
+  "mean": 79.2,
+  "median": 78.0
+ },
+ "per_prediction_ms": {
+  "gpu": 1185.57,
+  "incl_post": 1185.8
+ }
+}

@@ -1,0 +1,36 @@
+{
+ "label": "sam3_base_concept",
+ "overall": {
+  "n": 8194,
+  "gIoU": 38.82,
+  "iou50": 40.32,
+  "cIoU": 50.8
+ },
+ "by_gran": {
+  "obj": {
+   "n": 1291,
+   "gIoU": 46.57,
+   "iou50": 49.73
+  },
+  "part": {
+   "n": 4171,
+   "gIoU": 27.47,
+   "iou50": 28.65
+  },
+  "obj&part": {
+   "n": 2732,
+   "gIoU": 52.5,
+   "iou50": 53.7
+  }
+ },
+ "single_target": {
+  "n": 3008,
+  "gIoU": 32.81,
+  "iou50": 35.61
+ },
+ "multi_target": {
+  "n": 5186,
+  "gIoU": 42.31,
+  "iou50": 43.06
+ }
+}

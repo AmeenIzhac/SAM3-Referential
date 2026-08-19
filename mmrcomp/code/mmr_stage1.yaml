@@ -1,0 +1,28 @@
+# @package _global_
+# MMR incremental data-scaling run, stage 1. Continues the previous stage's weights.
+defaults:
+  - newsam_base
+  - _self_
+scratch:
+  train_batch_size: 1
+  gradient_accumulation_steps: 1
+  max_data_epochs: 1
+paths:
+  train_img_folder: /mnt/data0/ameen/mmr_data/images
+  train_ann_file: /mnt/data0/ameen/mmr_data/coco/mmr_chunk1_0-1000.json
+  experiment_log_dir: /mnt/data0/ameen/mmr_runs/mmr_stage1
+  checkpoint_path: /workspace/.cache/huggingface/models--facebook--sam3/snapshots/3c879f39826c281e95690f02c7821c4de09afae7/sam3.pt
+trainer:
+  checkpoint:
+    save_freq: 0
+  data:
+    train:
+      dataset:
+        coco_json_loader:
+          _target_: sam3.train.data.coco_json_loaders.COCO_FROM_JSON
+          include_negatives: false
+          image_negatives_file: /mnt/data0/ameen/mmr_data/coco/image_negatives.json
+          max_negatives_per_datapoint: 3
+          neg_seed: 123
+          category_chunk_size: 100000
+          _partial_: true

@@ -1,0 +1,36 @@
+{
+ "label": "sam3_trained_question",
+ "overall": {
+  "n": 8194,
+  "gIoU": 11.1,
+  "iou50": 9.76,
+  "cIoU": 10.56
+ },
+ "by_gran": {
+  "obj": {
+   "n": 1291,
+   "gIoU": 11.83,
+   "iou50": 11.54
+  },
+  "part": {
+   "n": 4171,
+   "gIoU": 8.38,
+   "iou50": 6.31
+  },
+  "obj&part": {
+   "n": 2732,
+   "gIoU": 14.9,
+   "iou50": 14.2
+  }
+ },
+ "single_target": {
+  "n": 3008,
+  "gIoU": 8.9,
+  "iou50": 7.21
+ },
+ "multi_target": {
+  "n": 5186,
+  "gIoU": 12.37,
+  "iou50": 11.24
+ }
+}

@@ -1,0 +1,56 @@
+# @package _global_
+# MMR data-scaling ladder, applying the MMR paper's idea (train a segmenter on
+# multi-target / multi-granularity reasoning instructions) to an ORIGINAL SAM3
+# checkpoint instead of the paper's LLaVA+SAM M2SA model.
+#
+# ONE continuous fine-tune over the whole MMR train split (45,618 images /
+# 154,124 (image,question) samples, 1 epoch), with MMR-val benchmarks taken
+# in-flight at 0.25 / 0.5 / 1 / 2 / 4 / 8 / 16 / 32 / 64 / 100 % of the data.
+# One optimizer, one LR schedule, one rolling checkpoint that is overwritten in
+# place -- the weights simply keep training; no per-rung checkpoint copies.
+#
+# Launch via run_scale_ladder.sh (sets NEWSAM_BENCH_FRACS / NEWSAM_BENCH_CMD).
+defaults:
+  - newsam_base
+  - _self_
+
+scratch:
+  # 1 sample per rank per step, no accumulation -> global batch = #GPUs.
+  train_batch_size: 1
+  gradient_accumulation_steps: 1
+  # 1 epoch == exactly one pass over the dataset, which is what makes
+  # "fraction of the epoch" == "fraction of the data" for the bench ladder.
+  max_data_epochs: 1
+  num_train_workers: 0
+
+paths:
+  train_img_folder: /mnt/data0/ameen/mmr_data/images
+  train_ann_file: /mnt/data0/ameen/mmr_data/coco/mmr_full.json
+  experiment_log_dir: /mnt/data0/ameen/mmr_runs/mmr_scale
+  # The stock facebook/sam3 release checkpoint -- the run starts from original SAM3.
+  checkpoint_path: /workspace/.cache/huggingface/models--facebook--sam3/snapshots/3c879f39826c281e95690f02c7821c4de09afae7/sam3.pt
+
+trainer:
+  checkpoint:
+    # save_freq 0 => only the rolling checkpoint.pt, overwritten in place.
+    save_freq: 0
+  distributed:
+    # The inline benchmark pauses every rank at a barrier for ~6 min; the stock
+    # 30 min NCCL timeout would be cutting it close if a bench ever stalls.
+    timeout_mins: 180
+  logging:
+    log_freq: 25
+  data:
+    train:
+      dataset:
+        coco_json_loader:
+          _target_: sam3.train.data.coco_json_loaders.COCO_FROM_JSON
+          include_negatives: false
+          image_negatives_file: /mnt/data0/ameen/mmr_data/coco/image_negatives.json
+          max_negatives_per_datapoint: 3
+          neg_seed: 123
+          # MUST exceed the total category count (154,124). The loader turns each
+          # chunk into a separate datapoint per image, so >1 chunk would both
+          # double-count images and split an image's questions across steps.
+          category_chunk_size: 200000
+          _partial_: true

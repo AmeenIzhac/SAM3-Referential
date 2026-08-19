@@ -1,0 +1,36 @@
+{
+ "label": "mmrscale_epoch_1",
+ "overall": {
+  "n": 8194,
+  "gIoU": 36.98,
+  "iou50": 36.01,
+  "cIoU": 36.56
+ },
+ "by_gran": {
+  "obj": {
+   "n": 1291,
+   "gIoU": 45.47,
+   "iou50": 47.33
+  },
+  "part": {
+   "n": 4171,
+   "gIoU": 27.53,
+   "iou50": 24.62
+  },
+  "obj&part": {
+   "n": 2732,
+   "gIoU": 47.39,
+   "iou50": 48.06
+  }
+ },
+ "single_target": {
+  "n": 3008,
+  "gIoU": 31.19,
+  "iou50": 29.12
+ },
+ "multi_target": {
+  "n": 5186,
+  "gIoU": 40.33,
+  "iou50": 40.01
+ }
+}

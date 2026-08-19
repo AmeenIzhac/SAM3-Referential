@@ -21,6 +21,11 @@ head going *quiet* — the opposite sign to the SA-Co/Gold regression below.
 generate_dataset.py     # the whole data engine, one script
 eval_test.py            # in-domain held-out eval (per-category IoU)
 gold_eval.py            # SA-Co/Gold eval (cgF1, IL_MCC, …)
+gold_table.py           # SA-Co/Gold result tables + threshold sweep
+run_gold*.sh            # sharded multi-GPU gold-eval drivers
+mmrcomp/                # the MMR strand: code, baselines, figures ([mmr.md](mmr.md))
+mmr_eval/               # MMR metric dumps (per-config .json)
+quant/                  # the quantization strand: code + eval ([quant.md](quant.md))
 sam3/                   # vendored clone of facebookresearch/sam3 (gitignored)
 data/images/            # SA-1B .jpg frames (populated by the `download` stage)
 out/                    # results.jsonl, previews, image_negatives.json, dataset/, eval/
