@@ -10,6 +10,12 @@ prompts and multi-instance concepts, but weaker when the prompt needs compositio
 doorway if moved"). This engine mines exactly those expressions automatically; [Results](#results)
 shows that fine-tuning on them roughly **doubles** complex-referring IoU in one epoch.
 
+**Related:** [`mmr.md`](mmr.md) covers the separate MMR strand — training this SAM3 checkpoint on the
+MMR reasoning-segmentation benchmark and beating its purpose-built 7B model from the raw question.
+[`quant.md`](quant.md) quantizes that MMR checkpoint: 5-bit weights are free (−0.04 gIoU, 5.6×
+smaller checkpoint), 4-bit costs 0.13 with fine scale groups, and the damage shows up as the presence
+head going *quiet* — the opposite sign to the SA-Co/Gold regression below.
+
 ## Layout
 ```
 generate_dataset.py     # the whole data engine, one script

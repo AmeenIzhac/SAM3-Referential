@@ -1,9 +1,9 @@
 # vendored SAM3 (its own git repo, cloned separately)
-/sam3/
+/sam3
 
 # data + generated artifacts (SA-1B frames, results*.jsonl, previews, dataset_mixed/)
-/data/
-/out/
+/data
+/out
 
 # model weights & checkpoints (live outside the repo; never push)
 *.pt
